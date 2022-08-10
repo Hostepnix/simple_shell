@@ -46,6 +46,7 @@ int builtin_alias(char **argv, char __attribute__((__unused__)) **start)
 	}
 	return (ret_val);
 }
+
 /**
  * set_alias - Set or creates a new alias with 'name' and 'value'.
  * @arg: Name of the alias.
@@ -83,6 +84,7 @@ void set_alias(char *arg, char *ex_val)
 	if (!intr)
 		appendAlias(&ll_aliases, arg, new_val);
 }
+
 /**
  * print_alias - Prints the alias in the format name='value'.
  *
@@ -105,6 +107,7 @@ void print_alias(alias_t *alias)
 	write(STDOUT_FILENO, new_str, len);
 	free(new_str);
 }
+
 /**
  * replace_aliases - Replace matching alias with it values
  *
@@ -116,10 +119,11 @@ char **replace_aliases(char **argv)
 {
 	alias_t *intr;
 	char *new_val;
+	int i;
 
 	if (_strcmp(argv[0], "alias") == 0)
 		return (argv);
-	for (int i = 0; argv[i]; i++)
+	for (i = 0; argv[i]; i++)
 	{
 		intr = ll_aliases;
 		while (intr)
